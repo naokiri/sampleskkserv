@@ -1,6 +1,9 @@
 [package]
-name = "echoserv"
-version = "0.1.0"
+name = "sampleskkserv"
+version = "0.0.1"
 authors = ["Naoaki Iwakiri <naokiri@gmail.com>"]
 
 [dependencies]
+env_logger = "*"
+log = "0.4"
+encoding = "0.2"
