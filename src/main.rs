@@ -102,21 +102,20 @@ fn build_table(dictfile: &File) -> HashMap<String, String> {
                 match linestr.find(";;") {
                     Some(0) => {
                         trace!("Skip comment line");
-                        break;
                     }
                     _ => {
                         trace!("Not an comment");
-                    }
-                }
-                match linestr.find("/") {
-                    None => {
-                        trace!("No / in dict entry");
-                    }
-                    Some(place) => {
-                        let linestr = &linestr;
-                        let (midashi, kouho) = linestr.split_at(place);
-                        trace!("midashi: '{}', kouho: '{}'", midashi, kouho);
-                        table.insert(midashi.to_string(), kouho.trim_right_matches("\n").to_string());
+                        match linestr.find("/") {
+                            None => {
+                                trace!("No / in dict entry");
+                            }
+                            Some(place) => {
+                                let linestr = &linestr;
+                                let (midashi, kouho) = linestr.split_at(place);
+                                trace!("midashi: '{}', kouho: '{}'", midashi, kouho);
+                                table.insert(midashi.to_string(), kouho.trim_right_matches("\n").to_string());
+                            }
+                        }
                     }
                 }
             }
